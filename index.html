@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Controle-Dessalinizador</title>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <img src="assets/logo tcc.png" alt="icon" class="logo" />
+      <h1>Controle do Dessalinizador</h1>
+      <p class="subtitle">Conecte ao HC-08 (BLE) e controle a bomba</p>
+    </header>
+
+    <main class="card">
+      <div class="row">
+        <button id="btnConnect" class="btn btn-primary">🔗 Conectar Bluetooth</button>
+        <button id="btnDisconnect" class="btn btn-secondary">⛔ Desconectar</button>
+      </div>
+
+      <div class="row spaced">
+        <button id="btnOn" class="btn btn-on">LIGAR</button>
+        <button id="btnOff" class="btn btn-off">DESLIGAR</button>
+      </div>
+
+      <div class="status" id="status">Status: Desconectado</div>
+
+      <details id="advanced">
+        <summary>Avançado — UUIDs / opções</summary>
+        <div class="adv-grid">
+          <label>Service UUID (hex) <input id="serviceUuid" placeholder="FFE0" /></label>
+          <label>Characteristic UUID (hex) <input id="charUuid" placeholder="FFE1" /></label>
+        </div>
+        <p class="note">Se não souber, deixe os valores padrão (FFE0 / FFE1). Você pode usar o app <strong>nRF Connect</strong> para inspecionar serviços/characteristics do dispositivo.</p>
+        <div class="adv-grid">
+          <label><input type="checkbox" id="sendTextMode" /> Enviar texto completo (ex: "LIGAR")</label>
+        </div>
+      </details>
+
+      <div id="log" class="log"></div>
+    </main>
+
+    
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
