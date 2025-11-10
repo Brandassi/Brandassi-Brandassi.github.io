@@ -33,16 +33,19 @@
           <label>Service UUID (hex) <input id="serviceUuid" placeholder="FFE0" /></label>
           <label>Characteristic UUID (hex) <input id="charUuid" placeholder="FFE1" /></label>
         </div>
-        <p class="note">Se não souber, deixe os valores padrão (FFE0 / FFE1). Você pode usar o app <strong>nRF Connect</strong> para inspecionar serviços/characteristics do dispositivo.</p>
+        <p class="note">
+          Se não souber, deixe os valores padrão (FFE0 / FFE1).  
+          Você pode usar o app <strong>nRF Connect</strong> para inspecionar serviços/characteristics do dispositivo.
+        </p>
         <div class="adv-grid">
           <label><input type="checkbox" id="sendTextMode" /> Enviar texto completo (ex: "LIGAR")</label>
         </div>
+        <div class="adv-grid">
+          <label><input type="checkbox" id="enableSound" checked /> Som de feedback</label>
+          <label><input type="checkbox" id="enableVibration" checked /> Vibração (mobile)</label>
+        </div>
       </details>
-
-      <div id="log" class="log"></div>
     </main>
-
-    
   </div>
 
   <script src="app.js"></script>
