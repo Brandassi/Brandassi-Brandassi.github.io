@@ -5,27 +5,185 @@
   --on:#2ecc71;
   --off:#e74c3c;
   --muted:#bcd8ff;
+
+  /* espaçamentos e rampas */
+  --gap-xs:8px;
+  --gap-sm:12px;
+  --gap-md:18px;
+  --radius:12px;
 }
+
+/* reset / base */
 *{box-sizing:border-box}
-body{margin:0;min-height:100vh;background:linear-gradient(180deg,#021426, #071029);font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;color:var(--muted);display:flex;align-items:center;justify-content:center;padding:20px}
-.container{width:100%;max-width:520px}
-header{text-align:center;margin-bottom:14px}
-.logo{width:78px;height:78px;border-radius:14px;box-shadow:0 6px 18px rgba(0,0,0,0.5)}
-h1{margin:10px 0 4px;font-size:20px;color:#eaf6ff}
-.subtitle{margin:0;font-size:13px;color:#cfe8ff}
-.card{background:rgba(255,255,255,0.03);padding:18px;border-radius:12px;box-shadow:0 8px 30px rgba(2,6,23,0.7)}
-.row{display:flex;gap:10px;justify-content:center;margin-bottom:10px}
+html,body{height:100%}
+body{
+  margin:0;
+  min-height:100vh;
+  background:linear-gradient(180deg,#021426, var(--bg));
+  font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  color:var(--muted);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:18px;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+
+/* container responsivo */
+.container{
+  width:100%;
+  max-width:1100px;      /* aumenta para desktop */
+  margin-inline:auto;
+  padding:10px;
+}
+
+/* header: mobile-first (logo em cima, centralizado) */
+header{
+  text-align:center;
+  margin-bottom:var(--gap-md);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:10px;
+}
+
+/* logo e textos escaláveis */
+.logo{
+  width:clamp(64px, 14vw, 120px);
+  height:auto;
+  border-radius:14px;
+  box-shadow:0 6px 18px rgba(0,0,0,0.5);
+  object-fit:cover;
+}
+h1{
+  margin:6px 0 0;
+  font-size:clamp(18px, 3.2vw, 28px);
+  color:#eaf6ff;
+  line-height:1.05;
+}
+.subtitle{
+  margin:0;
+  font-size:clamp(12px, 1.8vw, 14px);
+  color:#cfe8ff;
+}
+
+/* card principal */
+.card{
+  background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+  padding:clamp(14px, 2.5vw, 28px);
+  border-radius:var(--radius);
+  box-shadow:0 8px 30px rgba(2,6,23,0.7);
+  display:flex;
+  flex-direction:column;
+  gap:var(--gap-md);
+}
+
+/* linhas de botões responsivas */
+.row{
+  display:flex;
+  gap:10px;
+  justify-content:center;
+  align-items:center;
+  flex-wrap:wrap;
+  margin-bottom:6px;
+}
 .row.spaced{justify-content:space-between}
-.btn{padding:12px 16px;border-radius:10px;border:0;font-weight:700;font-size:15px;cursor:pointer;min-width:110px}
+
+/* botões */
+.btn{
+  padding:12px 16px;
+  border-radius:10px;
+  border:0;
+  font-weight:700;
+  font-size:clamp(14px,1.8vw,16px);
+  cursor:pointer;
+  min-width:120px;
+  transition:transform .12s ease, box-shadow .12s ease, opacity .12s ease;
+}
+.btn:active{transform:translateY(1px) scale(.998)}
+.btn:focus{outline:3px solid rgba(15,98,254,0.12)}
+
 .btn-primary{background:var(--accent);color:white}
 .btn-secondary{background:#3a4658;color:white}
-.btn-on{background:var(--on);color:#03220b;flex:1;margin-right:4px}
-.btn-off{background:var(--off);color:white;flex:1}
-.status{margin-top:8px;text-align:center;padding:10px;border-radius:8px;background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);color:#dff6ff}
-.log{margin-top:12px;font-size:13px;color:#b6e0ff;min-height:28px}
+.btn-on{background:var(--on);color:#03220b;flex:1;min-width:120px}
+.btn-off{background:var(--off);color:white;flex:1;min-width:120px}
+
+/* status e log (log existe mas você não está mostrando no app) */
+.status{
+  margin-top:8px;
+  text-align:center;
+  padding:10px;
+  border-radius:8px;
+  background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);
+  color:#dff6ff;
+  font-size:14px;
+}
+.log{display:none} /* escondemos o log na UI (você manda pro console) */
+
+/* detalhes / painel avançado */
 details{margin-top:12px;color:#cfe8ff}
-.adv-grid{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.adv-grid{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-top:8px;
+}
 .adv-grid label{flex:1;min-width:140px;display:block}
-.adv-grid input{width:100%;padding:8px;border-radius:8px;border:0;background:rgba(255,255,255,0.03);color:var(--muted)}
+.adv-grid input{
+  width:100%;
+  padding:8px;
+  border-radius:8px;
+  border:0;
+  background:rgba(255,255,255,0.03);
+  color:var(--muted);
+}
 .note{font-size:12px;color:#9fc9ff;margin-top:8px}
+
 footer{text-align:center;margin-top:12px;color:#7fb7ff;font-size:12px}
+
+/* --- Media queries para telas maiores (desktop) --- */
+@media (min-width: 900px) {
+  header{
+    flex-direction:row;
+    align-items:center;
+    gap:20px;
+    text-align:left;
+  }
+  /* logo e header text lado a lado */
+  header .logo{width:clamp(72px,8vw,120px)}
+  header h1{font-size:clamp(20px,1.8vw,28px)}
+  header .subtitle{font-size:13px}
+
+  /* no desktop, o .card fica com padding maior e conteúdo centralizado */
+  .card{padding:28px; gap:22px}
+
+  /* botoes LIGAR/DESLIGAR lado a lado com largura fixa */
+  .row.spaced {
+    gap:18px;
+  }
+  .row.spaced .btn-on,
+  .row.spaced .btn-off {
+    flex:0 0 48%;
+    min-width:160px;
+  }
+
+  /* elementos de ajuste na area avancada ficam em linha */
+  .adv-grid{flex-wrap:nowrap}
+}
+
+/* extra para telas muito largas */
+@media (min-width: 1400px) {
+  .container{max-width:1200px}
+  .card{padding:36px}
+  .btn{font-size:16px}
+}
+
+/* pequenas melhorias de acessibilidade/hover */
+.btn-primary:hover, .btn-on:hover, .btn-off:hover, .btn-secondary:hover{
+  filter:brightness(1.04);
+  box-shadow:0 8px 20px rgba(2,6,23,0.25);
+}
+
+/* garante que inputs não tenham autofill feio em alguns browsers */
+input:-webkit-autofill { box-shadow: 0 0 0px 1000px rgba(255,255,255,0.03) inset; -webkit-text-fill-color: var(--muted); }
